@@ -1,0 +1,39 @@
+﻿@model Library.Models.Book
+
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>Add</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.Book_id, "Book id")
+    <br />
+    @Html.EditorFor(model => model.Book_id)
+    @Html.ValidationMessageFor(model => model.Book_id, "", new { @class = "text-danger" })
+    <br /><br />
+    @Html.LabelFor(model => model.Book_name, "Book name")
+    <br />
+    @Html.EditorFor(model => model.Book_name)
+    <br /><br />
+    @Html.LabelFor(model => model.Author_name, "Author")
+    <br />
+    @Html.EditorFor(model => model.Author_name)
+    <br /><br />
+    @Html.LabelFor(model => model.Country, "Country")
+    <br />
+    @Html.EditorFor(model => model.Country)
+    <br /><br />
+    @Html.LabelFor(model => model.Year_edition, "Year")
+    <br />
+    @Html.EditorFor(model => model.Year_edition)
+    <br /><br />
+    @Html.LabelFor(model => model.Quantity, "Quantity")
+    <br />
+    @Html.EditorFor(model => model.Quantity)
+    <br /><br />
+    <input type="submit" value="Add" />
+    <input type="reset" value="Reset" />
+    @Html.ActionLink("Cancel", "Index")
+}

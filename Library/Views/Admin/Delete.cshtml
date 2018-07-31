@@ -1,0 +1,23 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Library.Models.Book
+
+<h2>Delete book</h2>
+<dl>
+    <dt>Name</dt>
+    <dd>
+        @Html.DisplayFor(model => model.Book_name)
+    </dd>
+
+    <dt>Author</dt>
+    <dd>
+        @Html.DisplayFor(model => model.Author_name)
+    </dd>
+</dl>
+
+@using (Html.BeginForm())
+{
+    <input type="submit" value="Delete" />
+    @Html.ActionLink("Cancel", "Index")
+}

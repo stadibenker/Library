@@ -1,0 +1,24 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Library.Models.Book
+
+<h4>You want to take book:</h4>
+@Html.ValidationMessageFor(model => model.Book_name, "", new { @class = "text-danger" })
+<dl>
+    <dt>Name</dt>
+    <dd>
+        @Html.DisplayFor(model => model.Book_name)
+    </dd>
+
+    <dt>Author</dt>
+    <dd>
+        @Html.DisplayFor(model => model.Author_name)
+    </dd>
+</dl>
+
+@using (Html.BeginForm())
+{
+    <input type="submit" value="Confirm" />
+    @Html.ActionLink("Cancel", "Index")
+}

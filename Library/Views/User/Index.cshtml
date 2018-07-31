@@ -1,0 +1,78 @@
+﻿@using Library.Models
+@model BooksAuthorsModel
+@using Library.Helpers
+
+<h4>
+    @Html.ActionLink("Change user", "Login", "Account") |
+    @Html.ActionLink("Create new user", "Register", "Account")
+</h4>
+@{
+    ViewBag.Title = "Book list";
+}
+
+<h2>Book list</h2>
+@Html.ActionLink("Show all books", "AllBooksFilter") |
+@Html.ActionLink("Show available books", "AvailableBooksFilter") |
+@Html.ActionLink("Show taken books", "MyBooksFilter")
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Name", "BookSort")
+        </th>
+        <th>
+            @Html.ActionLink("Author", "AuthorSort")
+        </th>
+        <th>
+            @Html.DisplayName("Country")
+        </th>
+        <th>
+            @Html.DisplayName("Year edition")
+        </th>
+        <th>
+            @Html.DisplayName("Quantity")
+        </th>
+        <th>
+            @Html.DisplayName("Operations")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (Book book in Model.Books)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => book.Book_name)
+            </td>
+            <td>
+                @{
+                    foreach (Author author in Model.Authors)
+                    {
+                        if (author.Book_id == book.Book_id)
+                        {
+                            @Html.DisplayFor(modelItem => author.Author_name)
+                            <br />
+                        }
+                    }
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => book.Country)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => book.Year_edition)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => book.Quantity)
+            </td>
+            @if (book.Quantity >= 1)
+            {
+                <td>@Html.ActionLink("Take", "TakeBook", new { id = book.Book_id })</td>
+            }
+        </tr>
+    }
+</table>
+
+<div class="btn-group">
+    @Html.PageLinks(Model.PageInfo, x => Url.Action("Index", new { page = x }))
+</div>

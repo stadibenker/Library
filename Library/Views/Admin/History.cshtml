@@ -1,0 +1,37 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Library.Models
+@model UserBookModel
+
+<h3>
+    @Html.DisplayName("Book '" + Model.book.Book_name + "' was taken by:")
+</h3>
+<table class="table" id="grid">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("User name")
+            </th>
+            <th>
+                @Html.DisplayName("Date taken")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    @foreach (User item in Model.Users)
+    {
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Us_name)
+                </td>
+                <td>
+                    @Html.DisplayName(item.Date_taken.ToString("yyyy-MM-dd"))
+                </td>
+            </tr>
+        </tbody>
+    }
+</table>
+@Html.ActionLink("Go back", "Index")
